@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nTropy - Space Science & Technology Education</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0c0a1a; /* Deep space blue */
+            color: #e0e0e0; /* Light gray for text */
+        }
+        .hero-section {
+            background: linear-gradient(rgba(12, 10, 26, 0.8), rgba(12, 10, 26, 0.8)), url('https://placehold.co/1600x900/0c0a1a/4f46e5?text=Cosmic+Vista') no-repeat center center/cover;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        .glow-button {
+            box-shadow: 0 0 5px #6366f1, 0 0 15px #6366f1, 0 0 25px #6366f1;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 10px #818cf8, 0 0 25px #818cf8, 0 0 40px #818cf8;
+        }
+        .hidden {
+            display: none;
+        }
+        /* Styles for the modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50" style="background: rgba(12, 10, 26, 0.8); backdrop-filter: blur(10px);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold tracking-wider nav-link" data-target="page-home">
+                n<span class="text-indigo-400">T</span>ropy
+            </a>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8 text-lg">
+                <a href="#courses" class="nav-link-scroll">Courses</a>
+                <a href="#articles" class="nav-link-scroll">Articles</a>
+                <a href="#about" class="nav-link-scroll">About</a>
+                <button id="contact-us-btn" class="hover:text-indigo-400 transition duration-300">Contact Us</button>
+                <button class="nav-link bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-target="page-register">Register</button>
+            </div>
+            <!-- Mobile Nav Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                 <i class="ph-bold ph-list text-3xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+            <a href="#courses" class="block text-center py-3 text-lg nav-link-scroll mobile-link">Courses</a>
+            <a href="#articles" class="block text-center py-3 text-lg nav-link-scroll mobile-link">Articles</a>
+            <a href="#about" class="block text-center py-3 text-lg nav-link-scroll mobile-link">About</a>
+            <button id="contact-us-btn-mobile" class="w-full text-center py-3 text-lg mobile-link">Contact Us</button>
+            <button class="w-full text-center py-3 text-lg nav-link mobile-link" data-target="page-register">Register</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- This div contains all the content for the main homepage -->
+        <div id="page-home">
+            <!-- Hero Section -->
+            <section class="hero-section h-[85vh] flex items-center justify-center text-center">
+                <div class="container mx-auto px-6">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">Explore the Cosmos</h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto text-indigo-200 mb-8">Your journey into space science and technology starts here. Learn, discover, and reach for the stars with nTropy.</p>
+                    <a href="#courses" class="nav-link-scroll bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 text-lg glow-button">Browse Courses</a>
+                </div>
+            </section>
+
+            <!-- Featured Courses Section -->
+            <section id="courses" class="py-20">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Featured Learning Paths</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Course Cards -->
+                        <div class="glass-card rounded-xl p-6 text-center cursor-pointer nav-link" data-target="page-rocketry"><i class="ph-bold ph-rocket-launch text-5xl text-indigo-400 mb-4 inline-block"></i><h3 class="text-xl font-semibold mb-2">Rocketry & Propulsion</h3><p class="text-gray-400 text-sm">Understand the principles that launch humanity into space.</p></div>
+                        <div class="glass-card rounded-xl p-6 text-center cursor-pointer nav-link" data-target="page-astrophysics"><i class="ph-bold ph-planet text-5xl text-indigo-400 mb-4 inline-block"></i><h3 class="text-xl font-semibold mb-2">Intro to Astrophysics</h3><p class="text-gray-400 text-sm">Delve into the life of stars, black holes, and galaxies.</p></div>
+                        <div class="glass-card rounded-xl p-6 text-center cursor-pointer nav-link" data-target="page-satellite"><i class="ph-bold ph-satellite text-5xl text-indigo-400 mb-4 inline-block"></i><h3 class="text-xl font-semibold mb-2">Satellite Technology</h3><p class="text-gray-400 text-sm">Learn how we communicate, navigate, and observe Earth.</p></div>
+                        <div class="glass-card rounded-xl p-6 text-center cursor-pointer nav-link" data-target="page-mars"><i class="ph-bold ph-user-plus text-5xl text-indigo-400 mb-4 inline-block"></i><h3 class="text-xl font-semibold mb-2">Colonizing Mars</h3><p class="text-gray-400 text-sm">Explore the challenges of establishing a human presence.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why nTropy? Section -->
+            <section id="about" class="py-20 bg-black bg-opacity-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto">
+                         <h2 class="text-3xl md:text-4xl font-bold mb-4">Why nTropy?</h2>
+                         <p class="text-indigo-200 mb-12">We are dedicated to making space science accessible and engaging for everyone. Our platform is built on principles that foster curiosity and deep understanding.</p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div class="p-6">
+                            <i class="ph-bold ph-graduation-cap text-4xl text-indigo-400 mb-3"></i>
+                            <h3 class="text-xl font-semibold mb-2">Expert-Led Content</h3>
+                            <p class="text-gray-400">Learn from scientists, engineers, and educators who are passionate about space.</p>
+                        </div>
+                         <div class="p-6">
+                            <i class="ph-bold ph-game-controller text-4xl text-indigo-400 mb-3"></i>
+                            <h3 class="text-xl font-semibold mb-2">Interactive Learning</h3>
+                            <p class="text-gray-400">Engage with simulations, quizzes, and projects that bring complex topics to life.</p>
+                        </div>
+                         <div class="p-6">
+                            <i class="ph-bold ph-users-three text-4xl text-indigo-400 mb-3"></i>
+                            <h3 class="text-xl font-semibold mb-2">Thriving Community</h3>
+                            <p class="text-gray-400">Connect with fellow learners, share discoveries, and collaborate on projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Articles Section -->
+            <section id="articles" class="py-20">
+                 <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Latest from the Cosmos</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Article Cards -->
+                        <div class="glass-card rounded-lg overflow-hidden cursor-pointer nav-link" data-target="page-jwst"><img src="https://placehold.co/600x400/1e1b4b/93c5fd?text=JWST+Image" alt="JWST Discovery" class="w-full h-48 object-cover"><div class="p-6"><span class="text-sm text-indigo-400">Deep Space</span><h3 class="text-xl font-semibold mt-2 mb-3">Webb Telescope's New Discovery</h3><p class="text-gray-400 text-sm">Revealing the earliest structures of the universe...</p></div></div>
+                        <div class="glass-card rounded-lg overflow-hidden cursor-pointer nav-link" data-target="page-artemis"><img src="https://placehold.co/600x400/1e293b/a5b4fc?text=Artemis+Mission" alt="Artemis Mission" class="w-full h-48 object-cover"><div class="p-6"><span class="text-sm text-indigo-400">Human Exploration</span><h3 class="text-xl font-semibold mt-2 mb-3">Artemis Program: What's Next?</h3><p class="text-gray-400 text-sm">Breaking down the upcoming missions to the Moon...</p></div></div>
+                        <div class="glass-card rounded-lg overflow-hidden cursor-pointer nav-link" data-target="page-fusion"><img src="https://placehold.co/600x400/0f172a/c7d2fe?text=Fusion+Energy" alt="Fusion Energy" class="w-full h-48 object-cover"><div class="p-6"><span class="text-sm text-indigo-400">Future Tech</span><h3 class="text-xl font-semibold mt-2 mb-3">Fusion Propulsion for Star Travel</h3><p class="text-gray-400 text-sm">Harnessing star power for faster-than-ever space travel...</p></div></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Newsletter Signup Section -->
+            <section id="events" class="bg-indigo-900 bg-opacity-40 py-16">
+                 <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold mb-2">Join Our Community</h2>
+                    <p class="text-indigo-200 mb-6">Subscribe to get weekly updates, news about upcoming events, and access to exclusive content.</p>
+                    <form class="max-w-md mx-auto">
+                        <div class="flex items-center">
+                            <input type="email" class="w-full py-3 px-4 bg-gray-900 text-white border border-indigo-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="your.email@example.com">
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-r-md transition duration-300">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div> <!-- End of #page-home -->
+
+        <!-- SUB-PAGE SECTIONS -->
+        <!-- All sub-pages are hidden by default and shown by the JavaScript logic -->
+
+        <!-- SUB-PAGE: ROCKETRY COURSE -->
+        <div id="page-rocketry" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Rocketry & Propulsion</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Course Details</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=Rockets" alt="Rocket Launch" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <h2 class="text-3xl font-semibold mb-4 text-indigo-300">About this Course</h2>
+                        <p class="mb-6">This course provides a comprehensive overview of the fundamental principles of rocketry and propulsion systems. We will journey from the historical development of rockets to the cutting-edge technologies that could one day take us to other stars. Students will explore the physics of rocket flight, the chemistry of propellants, and the engineering challenges of building reliable launch vehicles.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-300">What You'll Learn</h3>
+                        <ul class="list-disc list-inside mb-6 space-y-2">
+                            <li>Newton's Laws of Motion as they apply to rockets.</li>
+                            <li>The Tsiolkovsky Rocket Equation and its implications.</li>
+                            <li>Differences between solid, liquid, and hybrid rocket engines.</li>
+                            <li>Fundamentals of orbital mechanics.</li>
+                            <li>Advanced propulsion concepts like ion drives and solar sails.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUB-PAGE: ASTROPHYSICS COURSE -->
+        <div id="page-astrophysics" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Intro to Astrophysics</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Course Details</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=Galaxies" alt="Galaxy" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <h2 class="text-3xl font-semibold mb-4 text-indigo-300">About this Course</h2>
+                        <p class="mb-6">Journey through the cosmos and uncover the secrets of the stars, galaxies, and the very fabric of spacetime. This course introduces the core concepts of astrophysics, from the lifecycle of stars to the enigmatic nature of dark matter and dark energy. No advanced math is required to start—just a universe of curiosity.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-300">What You'll Learn</h3>
+                        <ul class="list-disc list-inside mb-6 space-y-2">
+                            <li>The birth, life, and death of stars.</li>
+                            <li>The different types of galaxies and our place in the Milky Way.</li>
+                            <li>The basics of black holes and Einstein's theory of relativity.</li>
+                            <li>How astronomers measure vast cosmic distances.</li>
+                            <li>The Big Bang theory and the expansion of the universe.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUB-PAGE: SATELLITE TECHNOLOGY COURSE -->
+        <div id="page-satellite" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Satellite Technology</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Course Details</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=Satellites" alt="Satellite in Orbit" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <h2 class="text-3xl font-semibold mb-4 text-indigo-300">About this Course</h2>
+                        <p class="mb-6">Discover the unseen infrastructure that powers our modern world. This course explores the design, launch, and operation of artificial satellites. We'll cover everything from the CubeSats built by students to the massive constellations that provide global internet and the scientific instruments that monitor our planet's health.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-300">What You'll Learn</h3>
+                        <ul class="list-disc list-inside mb-6 space-y-2">
+                            <li>The main components of a satellite: bus, payload, and power systems.</li>
+                            <li>Different types of orbits (LEO, MEO, GEO) and their uses.</li>
+                            <li>How GPS and global navigation systems work.</li>
+                            <li>The role of satellites in Earth observation and climate science.</li>
+                            <li>The challenges of space debris and satellite maintenance.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUB-PAGE: COLONIZING MARS COURSE -->
+        <div id="page-mars" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Colonizing Mars</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Course Details</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=Mars+Colony" alt="Mars Colony" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <h2 class="text-3xl font-semibold mb-4 text-indigo-300">About this Course</h2>
+                        <p class="mb-6">Becoming a multi-planetary species is one of humanity's most ambitious goals. This course tackles the immense scientific and engineering challenges of establishing a permanent, self-sustaining human presence on Mars. We will analyze everything from the journey to Mars to building habitats, producing food, and creating a new society on another world.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-indigo-300">What You'll Learn</h3>
+                        <ul class="list-disc list-inside mb-6 space-y-2">
+                            <li>The environmental conditions on Mars and their dangers.</li>
+                            <li>Strategies for radiation shielding and life support systems.</li>
+                            <li>In-Situ Resource Utilization (ISRU): living off the land.</li>
+                            <li>The psychological and social challenges of long-duration space missions.</li>
+                            <li>Terraforming: the long-term vision of making Mars Earth-like.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUB-PAGE: JWST ARTICLE -->
+        <div id="page-jwst" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Webb Telescope Unveils a Galaxy in its Infancy</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Article from the Cosmos</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=JWST+Deep+Field" alt="JWST Deep Field" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <p>The James Webb Space Telescope (JWST) has once again peered back in time to the dawn of the universe. In a stunning new deep field image, astronomers have identified what they believe to be one of the earliest galaxies ever observed, existing just 300 million years after the Big Bang. Its light, stretched by the expansion of the universe for over 13.5 billion years, reveals a compact but rapidly forming collection of stars. This discovery challenges existing models of early galaxy formation and provides a crucial data point in our understanding of cosmic evolution.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUB-PAGE: ARTEMIS ARTICLE -->
+        <div id="page-artemis" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Artemis Program: What's Next for Lunar Exploration?</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Article from the Cosmos</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=Artemis+Crew" alt="Artemis Astronauts" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <p>With the successful uncrewed flight of Artemis I, NASA is marching steadily towards landing the first woman and first person of color on the Moon. The next major milestone, Artemis II, will send a crewed Orion capsule on a journey around the Moon, paving the way for the Artemis III landing mission. The program's ultimate goal is to establish a sustainable human presence on the lunar surface, including a base camp and the Gateway orbital outpost. These efforts will serve as a vital proving ground for the technologies and procedures needed for the even greater challenge: sending humans to Mars.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- SUB-PAGE: FUSION ARTICLE -->
+        <div id="page-fusion" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Is Fusion Propulsion the Key to Interstellar Travel?</h1>
+                    <p class="text-lg text-indigo-200 mb-8">Article from the Cosmos</p>
+                    <img src="https://placehold.co/1200x500/1e1b4b/93c5fd?text=Fusion+Drive" alt="Fusion Drive Concept" class="w-full h-auto rounded-lg shadow-2xl mb-12">
+                    <div class="max-w-4xl mx-auto text-lg leading-relaxed">
+                        <p>Chemical rockets, while powerful, are fundamentally too slow for practical travel between stars. The next great leap in propulsion may come from harnessing the power of the stars themselves: nuclear fusion. A fusion drive would fuse light atoms like deuterium and helium-3 to release enormous amounts of energy, creating a high-velocity exhaust. While the engineering challenges are immense—requiring contained temperatures hotter than the sun's core—the payoff would be revolutionary. A fusion-powered spacecraft could potentially reach Mars in a matter of weeks and could make journeys to the nearest stars possible within a human lifetime.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUB-PAGE: REGISTER -->
+        <div id="page-register" class="hidden">
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <button class="nav-link text-indigo-400 hover:text-indigo-300 mb-8 flex items-center" data-target="page-home"><i class="ph-bold ph-arrow-left mr-2"></i>Back to Home</button>
+                    <div class="max-w-xl mx-auto glass-card rounded-xl p-8">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-6 text-center">Register</h1>
+                        <form id="register-form">
+                            <div class="mb-4">
+                                <label for="name" class="block mb-2 text-indigo-200">Name</label>
+                                <input type="text" id="name" name="name" class="w-full py-3 px-4 bg-gray-900 text-white border border-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="mobile" class="block mb-2 text-indigo-200">Mobile Number</label>
+                                <input type="tel" id="mobile" name="mobile" class="w-full py-3 px-4 bg-gray-900 text-white border border-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="age" class="block mb-2 text-indigo-200">Age</label>
+                                <input type="number" id="age" name="age" class="w-full py-3 px-4 bg-gray-900 text-white border border-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                            </div>
+                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 glow-button">Submit</button>
+                        </form>
+                        <div id="form-status" class="mt-6 text-center"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- END OF SUB-PAGES -->
+    </main>
+    
+    <!-- Contact Us Modal -->
+    <div id="contact-modal" class="modal-overlay hidden">
+        <div class="glass-card rounded-xl p-8 max-w-sm w-full mx-4 text-center relative">
+            <button id="close-modal-btn" class="absolute top-2 right-3 text-2xl text-gray-400 hover:text-white">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+            <div class="space-y-3">
+                <p class="flex items-center justify-center">
+                    <i class="ph-bold ph-envelope mr-3 text-indigo-400"></i>
+                    <span>spandav87@gmail.com</span>
+                </p>
+                <a href="https://www.instagram.com/saurabhpandav97" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center hover:text-indigo-300">
+                    <i class="ph-bold ph-instagram-logo mr-3 text-indigo-400"></i>
+                    <span>saurabhpandav97</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-400">
+                <!-- About -->
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-semibold text-white mb-4">n<span class="text-indigo-400">T</span>ropy</h3>
+                    <p class="text-sm">An educational platform dedicated to making the wonders of the universe and the frontiers of technology accessible to everyone. Explore with curiosity.</p>
+                </div>
+                <!-- Site Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Explore</h3>
+                    <ul class="text-sm">
+                        <li class="mb-2"><a href="#courses" class="nav-link-scroll hover:text-indigo-400">Courses</a></li>
+                        <li class="mb-2"><a href="#articles" class="nav-link-scroll hover:text-indigo-400">Articles</a></li>
+                        <li class="mb-2"><a href="#" class="nav-link hover:text-indigo-400" data-target="page-register">Register</a></li>
+                    </ul>
+                </div>
+                <!-- Connect -->
+                <div>
+                     <h3 class="text-lg font-semibold text-white mb-4">Connect</h3>
+                    <div class="flex items-center space-x-4">
+                        <a href="https://www.instagram.com/saurabhpandav97" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-indigo-400">
+                            <i class="ph-bold ph-instagram-logo text-2xl"></i>
+                            <span class="ml-2">saurabhpandav97</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 nTropy. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Firebase and Navigation JavaScript -->
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- Firebase Configuration ---
+        // These variables are placeholders and will be populated in the execution environment.
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let app, db, auth;
+        let isAuthReady = false;
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+        } catch (e) {
+            console.error("Firebase initialization error:", e);
+        }
+
+        // --- Authentication ---
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (error) {
+                    console.error("Authentication error:", error);
+                }
+            }
+            isAuthReady = true;
+            console.log("Authentication ready. User UID:", auth.currentUser?.uid);
+        });
+
+        // --- UI Element Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageContainer = document.querySelector('main');
+            const allPages = pageContainer.children;
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollLinks = document.querySelectorAll('.nav-link-scroll');
+            
+            // --- Mobile Menu ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // --- Contact Modal ---
+            const contactModal = document.getElementById('contact-modal');
+            const openModalBtns = [document.getElementById('contact-us-btn'), document.getElementById('contact-us-btn-mobile')];
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            openModalBtns.forEach(btn => btn.addEventListener('click', () => contactModal.classList.remove('hidden')));
+            closeModalBtn.addEventListener('click', () => contactModal.classList.add('hidden'));
+            contactModal.addEventListener('click', (e) => {
+                if (e.target === contactModal) { // Close if clicking on overlay
+                    contactModal.classList.add('hidden');
+                }
+            });
+
+            // --- Page Switching Logic ---
+            function showPage(targetId) {
+                for (let page of allPages) page.classList.add('hidden');
+                const targetPage = document.getElementById(targetId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                    window.scrollTo(0, 0);
+                } else {
+                    document.getElementById('page-home').classList.remove('hidden');
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPage(link.dataset.target);
+                });
+            });
+
+            // --- Smooth Scrolling Logic ---
+            scrollLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPage('page-home');
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        setTimeout(() => targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                    }
+                });
+            });
+
+            // --- Registration Form Logic ---
+            const registerForm = document.getElementById('register-form');
+            const formStatus = document.getElementById('form-status');
+            
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                formStatus.textContent = 'Submitting...';
+                formStatus.classList.remove('text-red-400');
+                formStatus.classList.add('text-indigo-400');
+
+                if (!isAuthReady || !auth.currentUser) {
+                    formStatus.textContent = 'Authentication not ready. Please try again in a moment.';
+                    formStatus.classList.add('text-red-400');
+                    return;
+                }
+                
+                const formData = {
+                    name: registerForm.name.value,
+                    mobile: registerForm.mobile.value,
+                    age: registerForm.age.value,
+                    registeredAt: serverTimestamp()
+                };
+
+                try {
+                    const userId = auth.currentUser.uid;
+                    const docPath = `/artifacts/${appId}/users/${userId}/registrations`;
+                    await addDoc(collection(db, docPath), formData);
+                    
+                    formStatus.textContent = 'Registration successful! Thank you.';
+                    formStatus.classList.remove('text-red-400');
+                    formStatus.classList.add('text-green-400');
+                    registerForm.reset();
+                } catch (error) {
+                    console.error("Error writing document to Firestore: ", error);
+                    formStatus.textContent = 'An error occurred. Please try again.';
+                    formStatus.classList.add('text-red-400');
+                }
+            });
+
+            // Initially show the home page
+            showPage('page-home');
+        });
+    </script>
+</body>
+</html>
